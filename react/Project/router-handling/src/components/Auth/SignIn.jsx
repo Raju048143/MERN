@@ -13,12 +13,12 @@ function SignIn() {
 
     if (
       storedUser &&
-      storedUser.email === username && // assuming username is email
+      storedUser.email === username && 
       storedUser.password === password
     ) {
       alert('Login successful!');
       localStorage.setItem('isLoggedIn', 'true');
-      navigate('/'); // redirect to home page after login
+      navigate('/'); 
     } else {
       alert('Invalid username or password');
     }

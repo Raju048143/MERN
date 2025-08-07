@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
-  const [fullName, setFullName] = useState('');  // added full name state
+  const [fullName, setFullName] = useState('');  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -10,12 +10,11 @@ const SignUp = () => {
   const handleSignUp = (e) => {
     e.preventDefault();
 
-    // Save to localStorage (you could also save fullName if you want)
     const user = { fullName, email, password };
     localStorage.setItem('user', JSON.stringify(user));
 
     alert('Account created successfully!');
-    navigate('/login'); // Redirect to login page
+    navigate('/login'); 
   };
 
   return (
