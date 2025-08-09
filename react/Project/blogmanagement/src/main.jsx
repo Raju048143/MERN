@@ -63,7 +63,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/post/:slug",
-        element: <Post/>
+        element: <Post />,
       },
     ],
   },
@@ -72,7 +72,7 @@ const router = createBrowserRouter([
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <Provider store={store}>
-        <RouterProvider router={router}/>
+      <RouterProvider router={router} />
     </Provider>
   </StrictMode>
 );

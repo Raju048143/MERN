@@ -21,7 +21,7 @@ export class AuthService {
         name
       );
       if (userAccount) {
-        return this.login({email, password})
+        return this.login({ email, password });
       } else {
         return userAccount;
       }
@@ -30,35 +30,28 @@ export class AuthService {
     }
   }
 
-  async login({email, password})
-  {
-    try{
-       return await this.account.createEmailPasswordSession(email,password)
-    }catch(error){
-        throw error
+  async login({ email, password }) {
+    try {
+      return await this.account.createEmailPasswordSession(email, password);
+    } catch (error) {
+      throw error;
     }
   }
 
-  async getCurrentUser()
-  {
-    try{ 
-        return await this.account.get()
-    }catch(error)
-    {
-        throw error;
-        
+  async getCurrentUser() {
+    try {
+      return await this.account.get();
+    } catch (error) {
+      throw error;
     }
     return null;
   }
 
-
-  async logout()
-  {
-    try{
-      await this.account.deleteSessions()
-    }catch(error)
-    {
-   return error
+  async logout() {
+    try {
+      await this.account.deleteSessions();
+    } catch (error) {
+      return error;
     }
   }
 }

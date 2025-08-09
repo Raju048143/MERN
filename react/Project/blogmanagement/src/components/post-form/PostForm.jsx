@@ -44,10 +44,10 @@ export default function PostForm({ post }) {
         const dbPost = await appwriteService.createPost({
           ...data,
           userId: userData.$id,
-           featuredImage: featuredImageId, 
+          featuredImage: featuredImageId,
         });
 
-        console.log("db post", dbPost)
+        console.log("db post", dbPost);
 
         if (dbPost) {
           navigate(`/post/${dbPost.$id}`);

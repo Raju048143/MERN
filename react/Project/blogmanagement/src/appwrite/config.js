@@ -63,13 +63,12 @@ export class Service {
   }
 
   async uploadFile(file) {
-      await this.account.get(); 
-      return await this.bucket.createFile(
-        conf.appwriteBucketId,
-        ID.unique(),
-        file
-      );
-    
+    await this.account.get();
+    return await this.bucket.createFile(
+      conf.appwriteBucketId,
+      ID.unique(),
+      file
+    );
   }
 
   async deleteFile(fileId) {
@@ -77,12 +76,10 @@ export class Service {
     return true;
   }
 
-getFilePreview(fileId) {
-  if (!fileId) return null;
-  return this.bucket.getFileView(conf.appwriteBucketId, fileId);
-}
-
-
+  getFilePreview(fileId) {
+    if (!fileId) return null;
+    return this.bucket.getFileView(conf.appwriteBucketId, fileId);
+  }
 }
 
 const service = new Service();

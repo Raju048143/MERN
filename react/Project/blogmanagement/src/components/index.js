@@ -8,11 +8,11 @@ import Signup from "./SignUp";
 import Login from "./Login";
 import PostCard from "./PostCard";
 import PostForm from "./post-form/PostForm";
-import AuthLayout from "./AuthLayout"
-import Input from "./Input"
-import Button from "./Button"
-import Select from "./Select"
-import Home from "./pages/Home"
+import AuthLayout from "./AuthLayout";
+import Input from "./Input";
+import Button from "./Button";
+import Select from "./Select";
+import Home from "./pages/Home";
 import Post from "./pages/Post";
 export {
   Header,
