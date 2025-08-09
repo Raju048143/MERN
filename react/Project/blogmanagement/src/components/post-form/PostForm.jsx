@@ -23,11 +23,10 @@ export default function PostForm({ post }) {
       const file = data.image[0]
         ? await appwriteService.uploadFile(data.image[0])
         : null;
-
       if (file && post.featuredImage) {
-        appwriteService.File(post.featuredImage);
+        appwriteService.updatePost(post.featuredImage);
       }
-
+     
       const dbPost = await appwriteService.updatePost(post.$id, {
         ...data,
         featuredImage: file ? file.$id : post.featuredImage,
@@ -78,63 +77,70 @@ export default function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-      <div className="w-2/3 px-2 ">
-        <Input
-          label="Title :"
-          placeholder="Title"
-          className="mb-4"
-          {...register("title", { required: true })}
-        />
-        <Input
-          label="Slug :"
-          placeholder="Slug"
-          className="mb-4"
-          {...register("slug", { required: true })}
-          onInput={(e) => {
-            setValue("slug", slugTransform(e.currentTarget.value), {
-              shouldValidate: true,
-            });
-          }}
-        />
-        <RTE
-          label="Content :"
-          name="content"
-          control={control}
-          defaultValue={getValues("content")}
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 rounded-2xl">
+<form
+  onSubmit={handleSubmit(submit)}
+  className="flex flex-wrap max-h-[650px] overflow-auto"
+>
+  {/* Left Column - Inputs */}
+  <div className="w-full md:w-1/2 max-w-[500px] px-4 space-y-4">
+    <Input
+      label="Title :"
+      placeholder="Title"
+      {...register("title", { required: true })}
+    />
+    <Input
+      label="Slug :"
+      placeholder="Slug"
+      {...register("slug", { required: true })}
+      onInput={(e) => {
+        setValue("slug", slugTransform(e.currentTarget.value), {
+          shouldValidate: true,
+        });
+      }}
+    />
+
+    <Input
+      label="Featured Image :"
+      type="file"
+      accept="image/png, image/jpg, image/jpeg, image/gif"
+      {...register("image", { required: !post })}
+    />
+    {post && (
+      <div className="w-full">
+        <img
+          src={appwriteService.getFilePreview(post.featuredImage)}
+          alt={post.title}
+          className="rounded-lg"
         />
       </div>
-      <div className="w-1/3 px-2">
-        <Input
-          label="Featured Image :"
-          type="file"
-          className="mb-4"
-          accept="image/png, image/jpg, image/jpeg, image/gif"
-          {...register("image", { required: !post })}
-        />
-        {post && (
-          <div className="w-full mb-4">
-            <img
-              src={appwriteService.getFilePreview(post.featuredImage)}
-              alt={post.title}
-              className="rounded-lg"
-            />
-          </div>
-        )}
-        <Select
-          options={["active", "inactive"]}
-          label="Status"
-          className="mb-4"
-          {...register("status", { required: true })}
-        />
-        <Button
-          type="submit"
-          bgColor={post ? "bg-green-500" : undefined}
-          className="w-full"
-        >
-          {post ? "Update" : "Submit"}
-        </Button>
-      </div>
-    </form>
+    )}
+
+    <Select
+      options={["active", "inactive"]}
+      label="Status"
+      {...register("status", { required: true })}
+    />
+
+    <Button
+      type="submit"
+      bgColor={post ? "bg-green-500" : undefined}
+      className="w-full"
+    >
+      {post ? "Update" : "Submit"}
+    </Button>
+  </div>
+
+  {/* Right Column - RTE */}
+  <div className="w-full md:w-1/2 max-w-[500px] px-4">
+    <RTE
+      label="Content :"
+      name="content"
+      control={control}
+      defaultValue={getValues("content")}
+    />
+  </div>
+</form>
+/</div>
   );
 }

@@ -4,7 +4,7 @@ import PostForm from "../post-form/PostForm";
 
 function AddPost() {
   return (
-    <div className="py-48">
+    <div className="py-4">
       <Container>
         <PostForm />
       </Container>
