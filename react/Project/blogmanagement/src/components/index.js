@@ -14,6 +14,7 @@ import Button from "./Button";
 import Select from "./Select";
 import Home from "./pages/Home";
 import Post from "./pages/Post";
+import MyPost from "./pages/MyPost";
 export {
   Header,
   Footer,
@@ -31,4 +32,5 @@ export {
   Select,
   Home,
   Post,
+  MyPost,
 };

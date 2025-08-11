@@ -80,10 +80,10 @@ export default function PostForm({ post }) {
     <div className="flex justify-center items-center min-h-screen bg-gray-100 rounded-2xl">
 <form
   onSubmit={handleSubmit(submit)}
-  className="flex flex-wrap max-h-[650px] overflow-auto"
+  className="flex flex-wrap  overflow-auto"
 >
   {/* Left Column - Inputs */}
-  <div className="w-full md:w-1/2 max-w-[500px] px-4 space-y-4">
+  <div className="w-full md:w-1/2 max-w-[500px] px-4 ">
     <Input
       label="Title :"
       placeholder="Title"
@@ -111,7 +111,7 @@ export default function PostForm({ post }) {
         <img
           src={appwriteService.getFilePreview(post.featuredImage)}
           alt={post.title}
-          className="rounded-lg"
+          className="rounded-lg h-[200px]"
         />
       </div>
     )}

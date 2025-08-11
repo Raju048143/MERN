@@ -1,6 +1,6 @@
 import conf from "../conf/conf";
 import { Client, Account, ID, Databases, Storage, Query } from "appwrite";
-
+import authService from "./auth"; 
 export class Service {
   client = new Client();
   account;
@@ -25,12 +25,12 @@ export class Service {
     );
   }
 
-  async updatePost(slug, { title, content, featuedImage, status, userId }) {
+  async updatePost(slug, { title, content,  featuredImage, status, userId }) {
     return await this.databases.updateDocument(
       conf.appwriteDatabaseId,
       conf.appwriteCollectionId,
       slug,
-      { title, content, featuedImage, status, userId }
+      { title, content,  featuredImage, status, userId }
     );
   }
 
@@ -79,6 +79,20 @@ export class Service {
   getFilePreview(fileId) {
     if (!fileId) return null;
     return this.bucket.getFileView(conf.appwriteBucketId, fileId);
+  }
+
+  async getPostsForCurrentUser() {
+    const user = await authService.getCurrentUser();
+    const queries = [
+      Query.equal("status", ["active"]),
+      Query.equal("userId", [user.$id]),
+    ];
+
+    return await this.databases.listDocuments(
+      conf.appwriteDatabaseId,
+      conf.appwriteCollectionId,
+      queries
+    );
   }
 }
 
