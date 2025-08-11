@@ -26,7 +26,7 @@ export default function PostForm({ post }) {
       if (file && post.featuredImage) {
         appwriteService.updatePost(post.featuredImage);
       }
-     
+
       const dbPost = await appwriteService.updatePost(post.$id, {
         ...data,
         featuredImage: file ? file.$id : post.featuredImage,
@@ -77,70 +77,70 @@ export default function PostForm({ post }) {
   }, [watch, slugTransform, setValue]);
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 rounded-2xl">
-<form
-  onSubmit={handleSubmit(submit)}
-  className="flex flex-wrap  overflow-auto"
->
-  {/* Left Column - Inputs */}
-  <div className="w-full md:w-1/2 max-w-[500px] px-4 ">
-    <Input
-      label="Title :"
-      placeholder="Title"
-      {...register("title", { required: true })}
-    />
-    <Input
-      label="Slug :"
-      placeholder="Slug"
-      {...register("slug", { required: true })}
-      onInput={(e) => {
-        setValue("slug", slugTransform(e.currentTarget.value), {
-          shouldValidate: true,
-        });
-      }}
-    />
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 rounded-2xl p-6">
+      <form
+        onSubmit={handleSubmit(submit)}
+        className="flex flex-col md:flex-row overflow-auto max-w-5xl w-full gap-6"
+      >
+        {/* Left Column - Inputs */}
+        <div className="w-full md:w-1/2 max-w-[500px] space-y-4">
+          <Input
+            label="Title :"
+            placeholder="Title"
+            {...register("title", { required: true })}
+          />
+          <Input
+            label="Slug :"
+            placeholder="Slug"
+            {...register("slug", { required: true })}
+            onInput={(e) => {
+              setValue("slug", slugTransform(e.currentTarget.value), {
+                shouldValidate: true,
+              });
+            }}
+          />
 
-    <Input
-      label="Featured Image :"
-      type="file"
-      accept="image/png, image/jpg, image/jpeg, image/gif"
-      {...register("image", { required: !post })}
-    />
-    {post && (
-      <div className="w-full">
-        <img
-          src={appwriteService.getFilePreview(post.featuredImage)}
-          alt={post.title}
-          className="rounded-lg h-[200px]"
-        />
-      </div>
-    )}
+          <Input
+            label="Featured Image :"
+            type="file"
+            accept="image/png, image/jpg, image/jpeg, image/gif"
+            {...register("image", { required: !post })}
+          />
+          {post && (
+            <div className="w-full">
+              <img
+                src={appwriteService.getFilePreview(post.featuredImage)}
+                alt={post.title}
+                className="rounded-lg h-[200px] object-cover w-full"
+              />
+            </div>
+          )}
 
-    <Select
-      options={["active", "inactive"]}
-      label="Status"
-      {...register("status", { required: true })}
-    />
+          <Select
+            options={["active", "inactive"]}
+            label="Status"
+            {...register("status", { required: true })}
+          />
 
-    <Button
-      type="submit"
-      bgColor={post ? "bg-green-500" : undefined}
-      className="w-full"
-    >
-      {post ? "Update" : "Submit"}
-    </Button>
-  </div>
+          <Button
+            type="submit"
+            bgColor={post ? "bg-green-500" : undefined}
+            className="w-full"
+          >
+            {post ? "Update" : "Submit"}
+          </Button>
+        </div>
 
-  {/* Right Column - RTE */}
-  <div className="w-full md:w-1/2 max-w-[500px] px-4">
-    <RTE
-      label="Content :"
-      name="content"
-      control={control}
-      defaultValue={getValues("content")}
-    />
-  </div>
-</form>
-/</div>
+        {/* Right Column - RTE */}
+        <div className="w-full md:w-1/2 max-w-[500px]">
+          <RTE
+            label="Content :"
+            name="content"
+            control={control}
+            defaultValue={getValues("content")}
+          />
+        </div>
+      </form>
+    </div>
   );
 }

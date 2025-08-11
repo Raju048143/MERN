@@ -4,8 +4,15 @@ import { Controller } from "react-hook-form";
 
 export default function RTE({ name, control, label, defaultValue = "" }) {
   return (
-    <div className="w-full">
-      {label && <label className="inline-block mb-1 pl-1">{label}</label>}
+    <div className="w-full max-w-4xl mx-auto px-2 sm:px-4">
+      {label && (
+        <label
+          className="inline-block mb-2 pl-1 text-sm font-semibold"
+          htmlFor={name}
+        >
+          {label}
+        </label>
+      )}
 
       <Controller
         name={name || "content"}

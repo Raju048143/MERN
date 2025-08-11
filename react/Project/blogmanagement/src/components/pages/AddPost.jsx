@@ -6,7 +6,9 @@ function AddPost() {
   return (
     <div className="py-4">
       <Container>
-        <PostForm />
+        <div className="max-w-2xl mx-auto px-3 sm:px-4">
+          <PostForm />
+        </div>
       </Container>
     </div>
   );

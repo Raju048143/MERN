@@ -7,7 +7,7 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { AuthLayout, Home, Login, Post, Signup, MyPost } from "./components/index.js";
 import AllPost from "./components/pages/AllPost.jsx";
-import AddPost from "./components/pages/AppPost.jsx";
+import AddPost from "./components/pages/AddPost.jsx";
 import EditPost from "./components/pages/EditPost.jsx";
 const router = createBrowserRouter([
   {

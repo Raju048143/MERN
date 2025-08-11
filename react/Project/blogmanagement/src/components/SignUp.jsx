@@ -27,11 +27,9 @@ function Signup() {
   };
 
   return (
-    <div className="flex items-center justify-center">
-      <div
-        className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}
-      >
-        <div className="mb-2 flex justify-center">
+    <div className="flex items-center justify-center min-h-screen bg-gray-50 p-4">
+      <div className="mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-8 sm:p-10 border border-black/10 shadow-md">
+        <div className="mb-4 flex justify-center">
           <span className="inline-block w-full max-w-[100px]">
             <Logo width="100%" />
           </span>
@@ -48,9 +46,9 @@ function Signup() {
             Sign In
           </Link>
         </p>
-        {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
+        {error && <p className="text-red-600 mt-6 text-center">{error}</p>}
 
-        <form onSubmit={handleSubmit(create)}>
+        <form onSubmit={handleSubmit(create)} className="mt-6">
           <div className="space-y-5">
             <Input
               label="Full Name: "
@@ -80,7 +78,10 @@ function Signup() {
                 required: true,
               })}
             />
-            <Button type="submit" className="w-full">
+            <Button
+              type="submit"
+              className="w-full bg-green-600 text-white font-semibold py-3 rounded-lg shadow-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-400 transition duration-200"
+            >
               Create Account
             </Button>
           </div>

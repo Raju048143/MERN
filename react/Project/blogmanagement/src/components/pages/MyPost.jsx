@@ -13,15 +13,13 @@ function MyPost() {
       }
     });
   }, []);
-console.log(posts)
+
   return (
     <div className="w-full py-8">
       <Container>
-        <div className="flex flex-wrap">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-4">
           {posts.map((post) => (
-            <div key={post.$id} className="p-2 w-1/4">
-              <PostCard post={post} />
-            </div>
+            <PostCard key={post.$id} post={post} />
           ))}
         </div>
       </Container>

@@ -21,10 +21,10 @@ function App() {
       .finally(() => setLoading(false));
   }, []);
   return !loading ? (
-    <div className="min-h-screen flex flex-wrap content-between bg-gray-400">
-      <div className="w-full block">
+    <div className="min-h-screen flex flex-col justify-between bg-gray-400">
+      <div className="w-full flex-grow flex flex-col">
         <Header />
-        <main>
+        <main className="flex-grow">
           <Outlet />
         </main>
         <Footer />
