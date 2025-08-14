@@ -7,23 +7,22 @@ import Contact from './components/Contact/Contact'
 import Education from './components/Education/Education'
 import Works from './components/Work/Works'
 import Experience from './components/Experience/Experience'
-
-import './App.css'
-
+import BlurBlob from './BlurBlob'
 function App() {
 
   return (
-    <div className='bg-[#050414]'>
-      <div>
-
-      </div>
-      <div className='absolute inset-0 bg-[linear-gradient(to_right,4f4f)], linear-gradient(to_bottom,#4f4f4f2e_1px, tra) '>
-      <Navbar/>
+    <div className='relative bg-[#050414]'>
+      <BlurBlob position={{top:'35%', left:'20%'}} size={{with:'30', height:'40%'}}/>
+      
+      <div className="relative pt-20">
+        <Navbar/>
       <About/>
       <Skills/>
       <Experience/>
       <Contact/>
-        <Footer/>
+      <Footer/>
+      <Education/>
+      <Works/>
       </div>
     </div>
   )
