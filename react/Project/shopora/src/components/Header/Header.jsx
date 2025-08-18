@@ -28,8 +28,8 @@ function Header() {
   ];
 
   return (
-    <header className="bg-white shadow-md">
-      <div className="flex items-center justify-between p-4">
+    <header classNam=" shadow-md text-white">
+      <div className="bg-gray-400 text-white flex items-center justify-between p-4">
         {/* Left: Logo */}
         <div className="flex items-center">
           <img src={Logo} alt="Shopora Logo" className="h-10 w-auto rounded" />
@@ -41,7 +41,7 @@ function Header() {
             <a
               key={index}
               href={item.path}
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-600"
+              className="flex items-center gap-2 text-white hover:text-blue-600"
             >
               {item.icon}
               {item.name}

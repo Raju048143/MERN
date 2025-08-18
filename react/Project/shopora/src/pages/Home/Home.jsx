@@ -1,9 +1,9 @@
 import React from 'react'
-import Header from '../../components/Header/Header'
+import Hero from '../../components/home/Hero'
 function Home() {
   return (
-    <div>
-      <Header/>
+     <div className="min-h-screen">
+      <Hero />
     </div>
   )
 }
