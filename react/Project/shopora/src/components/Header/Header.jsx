@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import {
   FaHome,
@@ -28,11 +29,12 @@ function Header() {
   ];
 
   return (
-    <header classNam=" shadow-md text-white">
-      <div className="bg-gray-400 text-white flex items-center justify-between p-4">
-        {/* Left: Logo */}
+    <header className="bg-gray-900 shadow-md">
+      <div className="flex items-center justify-between p-4 max-w-7xl mx-auto">
         <div className="flex items-center">
-          <img src={Logo} alt="Shopora Logo" className="h-10 w-auto rounded" />
+          <Link to="/">
+        <img src={Logo} alt="Shopora Logo" className="h-10 w-auto rounded cursor-pointer" />
+      </Link>
         </div>
 
         {/* Center nav (desktop) */}
@@ -41,7 +43,7 @@ function Header() {
             <a
               key={index}
               href={item.path}
-              className="flex items-center gap-2 text-white hover:text-blue-600"
+              className="flex items-center gap-2 text-gray-300 hover:text-white"
             >
               {item.icon}
               {item.name}
@@ -55,7 +57,7 @@ function Header() {
             <a
               key={index}
               href={item.path}
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-600"
+              className="flex items-center gap-2 text-gray-300 hover:text-white"
             >
               {item.icon}
               {item.name}
@@ -65,7 +67,7 @@ function Header() {
 
         {/* Hamburger for mobile */}
         <button
-          className="sm:hidden text-2xl"
+          className="sm:hidden text-2xl text-gray-300"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <FiX /> : <FiMenu />}
@@ -74,13 +76,13 @@ function Header() {
 
       {/* Mobile nav collapse */}
       {isOpen && (
-        <nav className="sm:hidden flex flex-col gap-4 p-4 border-t">
+        <nav className="sm:hidden flex flex-col gap-4 p-4 border-t border-gray-700 bg-gray-800">
           {/* Center nav items */}
           {centerNav.map((item, index) => (
             <a
               key={index}
               href={item.path}
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-600"
+              className="flex items-center gap-2 text-gray-300 hover:text-white"
             >
               {item.icon}
               {item.name}
@@ -92,7 +94,7 @@ function Header() {
             <a
               key={index}
               href={item.path}
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-600"
+              className="flex items-center gap-2 text-gray-300 hover:text-white"
             >
               {item.icon}
               {item.name}
